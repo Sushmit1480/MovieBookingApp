@@ -5,14 +5,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
-import org.apache.kafka.clients.admin.NewTopic;
+//import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
+//import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,11 +55,11 @@ public class Controller {
 	@Autowired
 	private MovieService movieService;
 	
-	 @Autowired
-	 private KafkaTemplate<String, Object> kafkaTemplate;
-
-	 @Autowired
-	 private NewTopic topic;
+//	 @Autowired
+//	 private KafkaTemplate<String, Object> kafkaTemplate;
+//
+//	 @Autowired
+//	 private NewTopic topic;
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> registerUser(@RequestBody User user){
@@ -119,7 +119,7 @@ public class Controller {
 		log.info("Inside Add Movie Method");
 		movie.setId(new Movie.MovieId(movie.getId().getMovieName().toLowerCase(), movie.getId().getTheatherName().toLowerCase()));
 		movieRepository.save(movie);
-		kafkaTemplate.send(topic.name(),"Movie added by admin");
+	//	kafkaTemplate.send(topic.name(),"Movie added by admin");
 		log.info("Exiting Add Movie Method");
 		return new ResponseEntity<Movie>(movie, HttpStatus.OK);
 	}
@@ -128,7 +128,7 @@ public class Controller {
 	public ResponseEntity<?> deleteMovie(@PathVariable("movieName") String movieName, @PathVariable("id") String theaterName){
 		log.info("Inside Delete Movie Method");
 		log.info("Exiting Delete Movie Method");
-		 kafkaTemplate.send(topic.name(),"Movie Deleted by the Admin. "+movieName+" is now not available");
+	//	 kafkaTemplate.send(topic.name(),"Movie Deleted by the Admin. "+movieName+" is now not available");
 		return movieService.deleteMovie(movieName, theaterName);
 	}
 	
@@ -141,7 +141,7 @@ public class Controller {
 			int randint = 100000 + rand.nextInt(900000);
 			ticket.setTicketId(randint);
 			ticketRepository.save(ticket);
-			 kafkaTemplate.send(topic.name(),"ticket booked successfully by user.");
+	//		 kafkaTemplate.send(topic.name(),"ticket booked successfully by user.");
 			log.info("Exiting Ticket Booking App");
 			return new ResponseEntity<String>("Ticket Booked Successfully", HttpStatus.OK);
 		}

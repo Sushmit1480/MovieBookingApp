@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.cts.MovieBookingApp.models.MovieTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.613 s - in com.cts.MovieBookingApp.models.MovieTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.625 s - in com.cts.MovieBookingApp.models.MovieTest
